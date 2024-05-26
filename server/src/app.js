@@ -1,8 +1,10 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import userRoute from "./api/routes/user.route";
 const app = express();
+
+import testRoute from "./routes/test.route.js";
+
 
 app.use(cors());
 
@@ -13,6 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Main Routes
-app.use('/api/user', userRoute)
+app.use('/api/test', testRoute)
 
 export default app;
