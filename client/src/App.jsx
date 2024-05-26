@@ -1,21 +1,22 @@
-import { NextUIProvider } from "@nextui-org/system";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { Home, About, Shop } from "./pages/index";
-import Header from "./layout/Header";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Home, About, Contact, Shop, Profile, Cart, Checkout } from "./pages";
+import AppLayout from "./layout/AppLayout";
+
+const router = createBrowserRouter([
+	{
+		element: <AppLayout />,
+		children: [
+			{ path: "/", element: <Home /> },
+			{ path: "/about", element: <About /> },
+			{ path: "/contact", element: <Contact /> },
+			{ path: "/shop", element: <Shop /> },
+			{ path: "/profile/:profileID", element: <Profile /> },
+			{ path: "/cart", element: <Cart /> },
+			{ path: "/checkout", element: <Checkout /> },
+		],
+	},
+]);
 
 export default function App() {
-	const navigate = useNavigate();
-
-	return (
-		<>
-      <NextUIProvider navigate={navigate}>
-        <Header />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/about" element={<About />} />
-					<Route path="/shop" element={<Shop />} />
-				</Routes>
-			</NextUIProvider>
-		</>
-	);
+	return <RouterProvider router={router} />;
 }
