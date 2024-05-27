@@ -1,9 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "@nextui-org/link";
+import { Link } from "@nextui-org/react";
 
 import { Icon } from "@iconify/react";
-import { Button } from "@nextui-org/button";
+import { Button } from "@nextui-org/react";
 
 const Header = () => {
 	const location = useLocation();
