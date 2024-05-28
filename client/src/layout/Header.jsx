@@ -4,6 +4,7 @@ import { Link } from "@nextui-org/react";
 
 import { Icon } from "@iconify/react";
 import { Button } from "@nextui-org/react";
+import IconButton from "../components/IconButton";
 
 const Header = () => {
 	const location = useLocation();
@@ -28,9 +29,11 @@ const Header = () => {
 						<li className="px-4">
 							<Link
 								href="/"
-								className={`hover:text-fnAccent-900 custom-transition text-${
-						location.pathname === "/" ? "white" : "black"
-					}`} 
+								className={`hover:text-fnAccent-900 text-${
+									location.pathname === "/"
+										? "white"
+										: "black"
+								}`}
 							>
 								Home
 							</Link>
@@ -38,9 +41,11 @@ const Header = () => {
 						<li className="px-4">
 							<Link
 								href="/shop"
-								className={`hover:text-fnAccent-900 custom-transition text-${
-						location.pathname === "/" ? "white" : "black"
-					}`}
+								className={`hover:text-fnAccent-900 text-${
+									location.pathname === "/"
+										? "white"
+										: "black"
+								}`}
 							>
 								Shop
 							</Link>
@@ -48,9 +53,11 @@ const Header = () => {
 						<li className="px-4">
 							<Link
 								href="/about"
-								className={`hover:text-fnAccent-900 custom-transition text-${
-						location.pathname === "/" ? "white" : "black"
-					}`}
+								className={`hover:text-fnAccent-900 text-${
+									location.pathname === "/"
+										? "white"
+										: "black"
+								}`}
 							>
 								About
 							</Link>
@@ -58,9 +65,11 @@ const Header = () => {
 						<li className="px-4">
 							<Link
 								href="/contact"
-								className={`hover:text-fnAccent-900 custom-transition text-${
-						location.pathname === "/" ? "white" : "black"
-					}`}
+								className={`hover:text-fnAccent-900 text-${
+									location.pathname === "/"
+										? "white"
+										: "black"
+								}`}
 							>
 								Contact
 							</Link>
@@ -68,50 +77,36 @@ const Header = () => {
 					</ul>
 				</nav>
 				<div>
-					<Button
-						isIconOnly
+					<IconButton
+						href={""}
+						icon={"solar:magnifer-linear"}
 						color="primary"
 						variant="light"
 						aria-label="Search"
-					>
-						<Icon
-							icon="solar:magnifer-linear"
-							className={`text-2xl text-${
-								location.pathname === "/" ? "white" : "black"
-							}`}
-						/>
-					</Button>
-					<Button
-						isIconOnly
-						href="/cart"
-						as={Link}
+						iconStyles={`text-2xl text-${
+							location.pathname === "/" ? "white" : "black"
+						}`}
+					/>
+					<IconButton
+						href={"/cart"}
+						icon={"solar:cart-outline"}
 						color="primary"
 						variant="light"
 						aria-label="Cart"
-					>
-						<Icon
-							icon="solar:cart-outline"
-							className={`text-2xl text-${
-								location.pathname === "/" ? "white" : "black"
-							}`}
-						/>
-					</Button>
-
-					<Button
-						isIconOnly
-						href="/profile/id"
-						as={Link}
+						iconStyles={`text-2xl text-${
+							location.pathname === "/" ? "white" : "black"
+						}`}
+					/>
+					<IconButton
+						href={"/profile/id"}
+						icon={"solar:user-circle-outline"}
 						color="primary"
 						variant="light"
-						aria-label="User"
-					>
-						<Icon
-							icon="solar:user-circle-outline"
-							className={`text-2xl text-${
-								location.pathname === "/" ? "white" : "black"
-							}`}
-						/>
-					</Button>
+						aria-label="Cart"
+						iconStyles={`text-2xl text-${
+							location.pathname === "/" ? "white" : "black"
+						}`}
+					/>
 				</div>
 			</div>
 		</header>

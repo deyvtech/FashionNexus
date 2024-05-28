@@ -12,7 +12,7 @@ export default function Home() {
 				<div className="mt-24 mx-auto">
 					<Link
 						href="/shop"
-						className="custom-transition hover:opacity-[.9] block max-w-[200px] rounded-lg p-4 text-xl font-inter font-medium text-center bg-fnAccent-950 mx-auto text-white"
+						className="custom-transition  hover:opacity-[.8] block max-w-[200px] rounded-lg p-4 text-xl font-inter font-medium text-center bg-gradient-to-r from-fnAccent-900 to-[#FFD1C5] mx-auto text-white"
 					>
 						Shop Now!
 					</Link>
