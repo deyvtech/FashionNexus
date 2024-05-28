@@ -11,8 +11,6 @@ export default function HomeSlider({ children }) {
 				setCount(1);
             }
         }, 5000);
-        console.log(count)
-
 		return () => {
 			clearInterval(interval);
 		};

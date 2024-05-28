@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link, Input, Button } from "@nextui-org/react";
-import { Icon } from "@iconify/react";
 import IconButton from "../components/IconButton";
+import FooterMenu from '../components/FooterMenu';
+import { footerMenu, social } from '../data';
 
 export default function Footer() {
 	return (
-		<footer className="pt-10 bg-gradient-to-t mt-32">
+		<footer className="pt-10 bg-gradient-to-t">
 			<div className="max-w-[1280px] mx-auto">
 				<div className="flex justify-center">
 					<div className="w-[30%]">
@@ -31,185 +32,22 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className="mt-10 grid grid-cols-4">
-					<div>
-						<h3 className="text-xl text-white py-3">Company</h3>
-						<ul className="space-y-1">
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									About Us
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Careers
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Blog
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Sustainability
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Affiliate Program
-								</Link>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<h3 className="text-xl text-white py-3">Category</h3>
-						<ul className="space-y-1">
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									New Arrivals
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Women
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Men
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Kids
-								</Link>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<h3 className="text-xl text-white py-3">
-							Customer Service
-						</h3>
-						<ul className="space-y-1">
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Contact Us
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									FAQ
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Shipping Information
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Returns & Exchanges
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Order Tracking
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-fnAccent-700 hover:text-fnAccent-960 text-sm"
-								>
-									Size Guide
-								</Link>
-							</li>
-						</ul>
-					</div>
+					<FooterMenu menus={footerMenu.companyMenu} title={'Category'}/>
+					<FooterMenu menus={footerMenu.categoryMenu} title={'Category'}/>
+					<FooterMenu menus={footerMenu.customerServiceMenu} title={'Category'}/>
 					<div>
 						<h3 className="text-md text-white py-3">Follow Us:</h3>
-						<IconButton
+						{social.map((soc) => (
+							<IconButton
+								key={soc.name}
 							href={""}
-							icon={"bxl:twitter"}
+							icon={soc.icon}
 							color="primary"
 							variant="light"
-							aria-label="Twitter"
+							aria-label={soc.ariaName}
 							iconStyles={"text-2xl text-white"}
 						/>
-						<IconButton
-							href={""}
-							icon={"bxl:linkedin"}
-							color="primary"
-							variant="light"
-							aria-label="Linkedin"
-							iconStyles={"text-2xl text-white"}
-						/>
-						<IconButton
-							href={""}
-							icon={"bxl:facebook"}
-							color="primary"
-							variant="light"
-							aria-label="Facebook"
-							iconStyles={"text-2xl text-white"}
-						/>
-						<IconButton
-							href={""}
-							icon={"bxl:youtube"}
-							color="primary"
-							variant="light"
-							aria-label="Youtube"
-							iconStyles={"text-2xl text-white"}
-						/>
-						<IconButton
-							href={""}
-							icon={"bxl:pinterest-alt"}
-							color="primary"
-							variant="light"
-							aria-label="Twitter"
-							iconStyles={"text-2xl text-white"}
-						/>
+						))}
 						<h3 className="text-md text-white py-3">Location:</h3>
 						<address className='text-white text-xs'>
 							<p>
