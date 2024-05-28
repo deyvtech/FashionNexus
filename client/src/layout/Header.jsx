@@ -3,13 +3,13 @@ import { useLocation } from "react-router-dom";
 import { Link } from "@nextui-org/react";
 
 
-import IconButton from "../components/IconButton";
+import IconButton from "@/components/IconButton";
 
 const Header = ({inView}) => {
 	const location = useLocation();
 	return (
 		<header
-			className={`  border-b-1 border-slate-700 ${
+			className={` custom-transition border-b-1 border-slate-700 ${
 				location.pathname === "/" && "fixed"
 			} top-0 w-full z-50 ${inView ? 'bg-gradient-to-t border-b-0 p-2 custom-transition' : 'p-4'}`}
 		>

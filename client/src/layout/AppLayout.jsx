@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "@/layout/Header";
+import Footer from "@/layout/Footer";
 import { Outlet , useNavigate} from "react-router-dom";
 import { NextUIProvider } from '@nextui-org/react';
 

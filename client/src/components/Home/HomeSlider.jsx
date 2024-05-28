@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getImageUrl } from "../../utils/getImgUrl";
+import { getImageUrl } from "@/utils/getImgUrl";
 
 export default function HomeSlider({ children }) {
 	const [count, setCount] = useState(1);

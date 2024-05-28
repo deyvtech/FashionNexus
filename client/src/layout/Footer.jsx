@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, Input, Button } from "@nextui-org/react";
-import IconButton from "../components/IconButton";
-import FooterMenu from '../components/FooterMenu';
-import { footerMenu, social } from '../data';
+import IconButton from '@/components/IconButton';
+import FooterMenu from '@/components/FooterMenu';
+import { footerMenu, social } from '@/data';
 
 export default function Footer() {
 	return (

@@ -1,6 +1,6 @@
 import React from 'react'
 // import { Link } from "react-router-dom";
-import HomeSlider from "../components/Home/HomeSlider";
+import HomeSlider from '@/components/Home/HomeSlider';
 import { Link } from "@nextui-org/link";
 import { useOutletContext } from "react-router-dom";
 
