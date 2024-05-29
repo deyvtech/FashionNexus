@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Input, Button } from "@nextui-org/react";
 import IconButton from '@/components/IconButton';
 import FooterMenu from '@/components/FooterMenu';
-import { footerMenu, social } from '@/data';
+import { menus, social } from '@/data';
 
 export default function Footer() {
 	return (
@@ -32,9 +32,9 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className="mt-10 grid grid-cols-4">
-					<FooterMenu menus={footerMenu.companyMenu} title={'Category'}/>
-					<FooterMenu menus={footerMenu.categoryMenu} title={'Category'}/>
-					<FooterMenu menus={footerMenu.customerServiceMenu} title={'Category'}/>
+					<FooterMenu menus={menus.companyMenu} title={'Category'}/>
+					<FooterMenu menus={menus.categoryMenu} title={'Category'}/>
+					<FooterMenu menus={menus.customerServiceMenu} title={'Category'}/>
 					<div>
 						<h3 className="text-md text-white py-3">Follow Us:</h3>
 						{social.map((soc) => (

@@ -1,4 +1,4 @@
-export const footerMenu = {
+export const menus = {
     companyMenu: [
         { key: 'about-us', name: 'About Us', href: '/about' },
         { key: 'careers', name: 'Careers', href: '/careers' },
@@ -19,7 +19,14 @@ export const footerMenu = {
         { key: 'returns-exchanges', name: 'Returns Exchanges', href: '/returns' },
         { key: 'order-tracking', name: 'Order Tracking', href: '/order-tracking' },
         { key: 'size-guide', name: 'Size Guide', href: '/size-guide' },
+    ],
+    headerMenu: [
+        {key: 'home', name: 'Home', href: '/'},
+        {key: 'shop', name: 'Shop', href: '/shop'},
+        {key: 'about', name: 'About', href: '/about'},
+        {key: 'contact', name: 'Contact', href: '/contact'},
     ]
+    
 };
 
 

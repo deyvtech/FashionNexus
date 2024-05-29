@@ -4,12 +4,13 @@ import { Link } from "@nextui-org/react";
 
 
 import IconButton from "@/components/IconButton";
+import { menus } from "@/data";
 
 const Header = ({inView}) => {
 	const location = useLocation();
 	return (
 		<header
-			className={` custom-transition border-b-1 border-slate-700 ${
+			className={` custom-transition shadow-md ${
 				location.pathname === "/" && "fixed"
 			} top-0 w-full z-50 ${inView ? 'bg-gradient-to-t border-b-0 p-2 custom-transition' : 'p-4'}`}
 		>
@@ -25,54 +26,20 @@ const Header = ({inView}) => {
 					}`}
 				>
 					<ul className="flex">
-						<li className="px-4">
+						{menus.headerMenu.map((menu) => (
+							<li className="px-4" key={menu.key}>
 							<Link
-								href="/"
+								href={menu.href}
 								className={`hover:text-fnAccent-900 text-${
 									location.pathname === "/"
 										? "white"
 										: "black"
 								}`}
 							>
-								Home
+								{menu.name}
 							</Link>
 						</li>
-						<li className="px-4">
-							<Link
-								href="/shop"
-								className={`hover:text-fnAccent-900 text-${
-									location.pathname === "/"
-										? "white"
-										: "black"
-								}`}
-							>
-								Shop
-							</Link>
-						</li>
-						<li className="px-4">
-							<Link
-								href="/about"
-								className={`hover:text-fnAccent-900 text-${
-									location.pathname === "/"
-										? "white"
-										: "black"
-								}`}
-							>
-								About
-							</Link>
-						</li>
-						<li className="px-4">
-							<Link
-								href="/contact"
-								className={`hover:text-fnAccent-900 text-${
-									location.pathname === "/"
-										? "white"
-										: "black"
-								}`}
-							>
-								Contact
-							</Link>
-						</li>
+						))}
 					</ul>
 				</nav>
 				<div>
