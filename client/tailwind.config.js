@@ -10,8 +10,8 @@ export default {
     fontFamily: {
 			inter: ["'Inter'", "sans-serif"],
       "exo-2": ["'Exo 2'", "sans-serif"],
-      "oswald": ["'Oswald'", "sans-serif"]
-
+      "oswald": ["'Oswald'", "sans-serif"],
+      "poppins": ["'Poppins'", "sans-serif"]
 		},
     extend: {
       colors: {

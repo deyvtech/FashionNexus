@@ -32,9 +32,9 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className="mt-10 grid grid-cols-4">
-					<FooterMenu menus={menus.companyMenu} title={'Category'}/>
+					<FooterMenu menus={menus.companyMenu} title={'Company'}/>
 					<FooterMenu menus={menus.categoryMenu} title={'Category'}/>
-					<FooterMenu menus={menus.customerServiceMenu} title={'Category'}/>
+					<FooterMenu menus={menus.customerServiceMenu} title={'Customer Service'}/>
 					<div>
 						<h3 className="text-md text-white py-3">Follow Us:</h3>
 						{social.map((soc) => (

@@ -2,6 +2,7 @@ import React from 'react'
 import HomeSlider from '@/components/Home/HomeSlider';
 import { Link } from "@nextui-org/link";
 import { useOutletContext } from "react-router-dom";
+import HomeTitle from '@/components/Home/HomeTitle';
 
 
 export default function Home() {
@@ -9,9 +10,8 @@ export default function Home() {
 	return (
 		<div>
 			<HomeSlider >
-				<h1 className="text-[64px] font-oswald leading-[normal] font-bold text-center max-w-[50%] mx-auto">
-					Unleash Your Style: Exclusive Clothing Collection
-				</h1>
+				<HomeTitle text={"Unleash Your Style: "}/>
+				<HomeTitle text={"Exclusive Clothing Collection"}/>
 				<div className="mt-24 mx-auto">
 					<Link
 						href="/shop"
@@ -22,9 +22,10 @@ export default function Home() {
 				</div>
 			</HomeSlider>
 
-			<div className='max-w-[1280px] py-10 mx-auto'  ref={ref}>
-				Featured
-			</div>
+			{/* Featured */}
+			<section className='max-w-[1280px] py-10 mx-auto' ref={ref}>
+				<h2 className='text-[60px] font-exo-2 font-bold text-center'>New Collection</h2>
+			</section>
 		</div>
 	);
 }

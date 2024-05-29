@@ -8,9 +8,9 @@ export const menus = {
     ],
     categoryMenu: [
         { key: 'new-arrivals', name: 'New Arrivals', href: '/new' },
-        { key: 'women', name: 'Women', href: '/women' },
-        { key: 'men', name: 'Men', href: '/men' },
-        { key: 'kids', name: 'Kids', href: '/kid' },
+        { key: 'women', name: 'Women\'s Shopping', href: '/women' },
+        { key: 'men', name: 'Men\'s Shopping', href: '/men' },
+        { key: 'kids', name: 'Kid\'s Shopping', href: '/kids' },
     ],
     customerServiceMenu: [
         { key: 'contact-us', name: 'Contact Us', href: '/contact' },
