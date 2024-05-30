@@ -1,9 +1,13 @@
 import express from "express";
 import cors from "cors";
+import dotenv from 'dotenv'
+
+import userRoute from "./routes/user.route.js";
+
 const app = express();
+import connectDB from './database/config.js'
 
-import testRoute from "./routes/test.route.js";
-
+dotenv.config()
 
 app.use(cors());
 
@@ -14,6 +18,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // Main Routes
-app.use('/api', testRoute)
+app.use('/api/user', userRoute)
+
+connectDB()
 
 export default app;
