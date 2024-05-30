@@ -13,7 +13,6 @@ app.use(cors());
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: false}));
-
 // parse application/json
 app.use(express.json());
 
@@ -21,7 +20,7 @@ app.use(express.json());
 app.use('/api/user', userRoute)
 
 
-// root routes
+// Root Routes
 app.get('/', (request, response) => {
     response.json({msg: 'Welcome to FashionNexus server'})
 })
