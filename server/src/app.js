@@ -20,6 +20,17 @@ app.use(express.json());
 // Main Routes
 app.use('/api/user', userRoute)
 
+// Main middleware 
+app.use((error, request, response, next) => {
+    const statusCode = error.statusCode || 500
+    const message = error.message || 'Internal Server Error'
+    return response.status(statusCode).json({
+        success: false,
+        message,
+        statusCode,
+    })
+})
+
 connectDB()
 
 export default app;
