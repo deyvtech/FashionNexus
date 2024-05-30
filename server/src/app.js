@@ -20,6 +20,12 @@ app.use(express.json());
 // Main Routes
 app.use('/api/user', userRoute)
 
+
+// root routes
+app.get('/', (request, response) => {
+    response.json({msg: 'Welcome to FashionNexus server'})
+})
+
 // Main middleware 
 app.use((error, request, response, next) => {
     const statusCode = error.statusCode || 500
