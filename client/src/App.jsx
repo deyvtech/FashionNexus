@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Home, About, Contact, Shop, Profile, Cart, Checkout } from "@/pages";
+import { Home, About, Contact, Shop, Profile, Cart, Checkout, SignIn, SignUp } from "@/pages";
 import AppLayout from "@/layouts/AppLayout";
 
 const router = createBrowserRouter([
@@ -13,6 +13,8 @@ const router = createBrowserRouter([
 			{ path: "/profile/:profileID", element: <Profile /> },
 			{ path: "/cart", element: <Cart /> },
 			{ path: "/checkout", element: <Checkout /> },
+			{ path: "/sign-in", element: <SignIn /> },
+			{ path: "/sign-up", element: <SignUp /> },
 		],
 	},
 ]);

@@ -1,8 +1,9 @@
 import { testController } from '../controllers/test.controller.js';
+import express from 'express'
 
 const testRoute = express.Router();
 
-testRoute.get('/test', testController)
+testRoute.post('/test', testController)
 
 
 export default testRoute

@@ -1,10 +1,33 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link, Input, Button } from "@nextui-org/react";
 import IconButton from '@/components/IconButton';
 import FooterMenu from '@/components/FooterMenu';
 import { menus, social } from '@/data';
 
 export default function Footer() {
+
+	const [email, setEmail] = useState('');
+
+	const handleSubmitEmail = async () => {
+		try {
+
+			const response = await fetch('http://localhost:3000/api/test', {
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({name: email})
+			})
+			const data = await response.json()
+
+			console.log(data)
+
+		setEmail('')
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	return (
 		<footer className="pt-10 bg-gradient-to-t">
 			<div className="max-w-[1280px] mx-auto">
@@ -18,12 +41,14 @@ export default function Footer() {
 					</div>
 					<div className="w-[30%]">
 						<Input
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
 							type="email"
 							label="Enter email address"
 							variant="bordered"
 							className="text-white"
 							endContent={
-								<Button className="bg-fnAccent-900">
+								<Button className="bg-fnAccent-900" onClick={handleSubmitEmail}>
 									{" "}
 									Submit{" "}
 								</Button>
