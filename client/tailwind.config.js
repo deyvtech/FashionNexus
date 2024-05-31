@@ -32,7 +32,7 @@ export default {
         fnDark: '#141414'
       },
       backgroundImage: {
-        'gradient-to-t': "linear-gradient(to right top, #000000, #080505, #100a0a, #160e0d, #1a1210);"
+        'custom-gradient-dark': "linear-gradient(to right top, #000000, #080505, #100a0a, #160e0d, #1a1210);"
       }
     },
   },

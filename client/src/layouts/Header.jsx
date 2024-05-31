@@ -10,9 +10,9 @@ const Header = ({inView}) => {
 	const location = useLocation();
 	return (
 		<header
-			className={` custom-transition shadow-md ${
+			className={` custom-transition  shadow-md ${
 				location.pathname === "/" && "fixed"
-			} top-0 w-full z-50 ${inView ? 'bg-gradient-to-t border-b-0 p-2 custom-transition' : 'p-4'}`}
+			} top-0 w-full z-50 ${inView ? 'bg-[#2015124d] backdrop-blur-md border-b-0 p-2 custom-transition' : 'p-4'}`}
 		>
 			<div className="max-w-[1280px] mx-auto flex justify-between items-center">
 				<Link href={"/"} className="font-exo-2">

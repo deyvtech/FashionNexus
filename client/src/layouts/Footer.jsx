@@ -29,7 +29,7 @@ export default function Footer() {
 	}
 
 	return (
-		<footer className="pt-10 bg-gradient-to-t">
+		<footer className="pt-10 bg-custom-gradient-dark">
 			<div className="max-w-[1280px] mx-auto">
 				<div className="flex justify-center">
 					<div className="w-[30%]">
