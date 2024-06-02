@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import { Link, Input, Button } from "@nextui-org/react";
 import IconButton from '@/components/IconButton';
 import FooterMenu from '@/components/FooterMenu';
@@ -11,17 +11,13 @@ export default function Footer() {
 	const handleSubmitEmail = async () => {
 		try {
 
-			const response = await fetch('http://localhost:3000/api/test', {
+			await fetch('http://localhost:3000/api/test', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({name: email})
 			})
-			const data = await response.json()
-
-			console.log(data)
-
 		setEmail('')
 		} catch (error) {
 			console.log(error)
