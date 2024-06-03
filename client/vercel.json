@@ -1,6 +1,6 @@
 {
     "rewrites": [
-		{ "source": "/api/(.*)", "destination": "https://fashion-nexus-client.vercel.app/api/$1" },
+		{ "source": "/api/(.*)", "destination": "https://fashion-nexus-server.vercel.app/api/$1" },
 		{ "source": "/(.*)", "destination": "/"}
 	]
 }
