@@ -10,9 +10,5 @@ export default defineConfig({
 			// eslint-disable-next-line no-undef
 			"@": path.resolve(__dirname, "./src"),
 		},
-	},
-	define: {
-		// eslint-disable-next-line no-undef
-		VITE_API_DOMAIN_PROD: JSON.stringify(process.env.VITE_API_DOMAIN_PROD),
 	}
 });

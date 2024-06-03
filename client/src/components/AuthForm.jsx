@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import { useLocation } from "react-router-dom";
 import useValidateError from "@/hooks/useValidateError";
 
-const apiUrl = import.meta.env.VITE_API_DOMAIN_PROD
+
 
 export default function AuthForm() {
 	const { pathname } = useLocation();
@@ -41,6 +41,7 @@ export default function AuthForm() {
 
 	const handleSubmitForm = async () => {
 		const errors = setError(formData)
+		const apiUrl = import.meta.env.VITE_API_DOMAIN_PROD;
 		if (Object.keys(errors).length === 0) {
 
 			try {
