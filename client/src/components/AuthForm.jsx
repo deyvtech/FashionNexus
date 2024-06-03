@@ -56,6 +56,8 @@ export default function AuthForm() {
 						body: JSON.stringify(formData),
 					}
 				);
+
+				console.log(`${apiUrl}/api/auth/${pathname === "/sign-up" ? "signup" : "signin"}`)
 				setFormData(initialState);
 				const data = await response.json();
 				setLoading(prev => !prev)
