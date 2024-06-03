@@ -11,5 +11,10 @@
 				"Access-Control-Allow-Origin": "https://fashion-nexus-client.vercel.app"
 			}
 		}
-    ]
+    ],
+    "functions": {
+      "api/controllers/auth.controller.js": {
+        "maxDuration": 30
+      }
+    }
   }
