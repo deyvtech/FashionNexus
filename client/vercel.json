@@ -1,9 +1,7 @@
 {
     "rewrites": [
-      {
-        "source": "/(.*)",
-        "destination": "/"
-      }
-    ]
+		{ "source": "/api/(.*)", "destination": "https://fashion-nexus-client.vercel.app/api/$1" },
+		{ "source": "/(.*)", "destination": "/"}
+	]
 }
 
