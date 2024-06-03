@@ -13,7 +13,7 @@
 		}
     ],
     "functions": {
-      "api/auth/**/*.js": {
+      "src/controllers/**/*.js": {
         "maxDuration": 30
       }
     }
