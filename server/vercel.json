@@ -1,15 +1,23 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "src/index.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      {
+	"version": 2,
+	"builds": [{ "src": "src/index.js", "use": "@vercel/node" }],
+	"rewrites": [
+		{
+			"source": "/api/(.*)",
+			"destination": "https://fashion-nexus-server.vercel.app/api/$1"
+		},
+		{
+			"source": "/(.*)",
+			"destination": "https://fashion-nexus-server.vercel.app/$1"
+		}
+	],
+	"routes": [
+		{
 			"src": "/(.*)",
 			"dest": "/src/index.js",
 			"headers": {
 				"Access-Control-Allow-Origin": "https://fashion-nexus-client.vercel.app"
 			}
 		}
-    ]
-  }
+	]
+}
