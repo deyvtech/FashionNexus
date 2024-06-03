@@ -40,8 +40,8 @@ export const signin = async (request, response, next) => {
         response.cookie("access_token", "Bearer " + token, { 
             expires:  new Date(Date.now() + 1 * 3600000), 
             httpOnly: true, 
-            // secure: true, 
-            // sameSite: 'Lax',
+            secure: true, 
+            sameSite: 'Lax',
             path: '/' // Cookie is accessible on all routes
         }).status(200).json(user);
 
