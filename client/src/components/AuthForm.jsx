@@ -4,6 +4,8 @@ import { Icon } from "@iconify/react";
 import { useLocation } from "react-router-dom";
 import useValidateError from "@/hooks/useValidateError";
 
+const apiUrl = import.meta.env.VITE_API_DOMAIN_PROD
+
 export default function AuthForm() {
 	const { pathname } = useLocation();
 	const initialState =
@@ -44,7 +46,7 @@ export default function AuthForm() {
 			try {
 				setLoading(prev => !prev)
 				const response = await fetch(
-					`${import.meta.env.VITE_PUBLIC_API_DOMAIN_PROD}/api/auth/${pathname === "/sign-up" ? "signup" : "signin"
+					`${apiUrl}/api/auth/${pathname === "/sign-up" ? "signup" : "signin"
 					}`,
 					{
 						method: "POST",

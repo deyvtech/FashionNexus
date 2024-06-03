@@ -10,7 +10,13 @@ import connectDB from './database/config.js'
 
 dotenv.config()
 
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+    origin: 'https://fashion-nexus-client.vercel.app', // Replace with your frontend domain
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: false}));
