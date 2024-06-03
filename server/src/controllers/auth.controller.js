@@ -52,3 +52,7 @@ export const signin = async (request, response, next) => {
 	}
 };
 
+export const testing = (request, response) => {
+	response.status(200).json({msg: 'api runnng'})
+
+}
