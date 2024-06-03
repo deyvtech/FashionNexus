@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from 'dotenv'
 
 import userRoute from "./routes/user.route.js";
+import authRoute from "./routes/auth.route.js";
 
 const app = express();
 import connectDB from './database/config.js'
@@ -17,8 +18,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 // Main Routes
-app.use('/api/user', userRoute)
-
+app.use('/api/user', userRoute);
+app.use('/api/auth', authRoute)
 
 // Root Routes
 app.get('/', (request, response) => {

@@ -10,17 +10,17 @@ export default function AuthForm() {
 	const initialState =
 		pathname === "/sign-up"
 			? {
-					firstName: "",
-					lastName: "",
-					emailAddress: "",
-					password: "",
-					confirmPassword: "",
-			  }
+					firstName: "Dave Lexter",
+					lastName: "Supsup",
+					emailAddress: "kingnorway17@gmail.com",
+					password: "123123123",
+					confirmPassword: "123123123",
+			}
 			: {
-					emailAddress: "",
-					password: "",
-					confirmPassword: "",
-			  };
+					emailAddress: "kingnorway17@gmail.com",
+					password: "123123123",
+					confirmPassword: "123123123",
+			};
 
 	const [formData, setFormData] = useState(initialState);
 
@@ -29,6 +29,7 @@ export default function AuthForm() {
 
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const handleChangeInput = useCallback((e) => {
 		const { name, value } = e.target;
@@ -37,8 +38,32 @@ export default function AuthForm() {
 		});
 	}, []);
 
-	const handleSubmitForm = () => {
-		setError(formData);
+	const handleSubmitForm = async () => {
+		const errors = setError(formData)
+		if (Object.keys(errors).length === 0) {
+
+			try {
+				setLoading(prev => !prev)
+				const response = await fetch(
+					`http://localhost:3000/api/auth/${pathname === "/sign-up" ? "signup" : "signin"
+					}`,
+					{
+						method: "POST",
+						headers: {
+							"Content-type": "application/json",
+						},
+						body: JSON.stringify(formData),
+					}
+				);
+				setFormData(initialState);
+				const data = await response.json();
+				setLoading(prev => !prev)
+
+				console.log(data)
+			} catch (error) {
+				console.log(error);
+			} 
+		}
 	};
 
 	const handleToggleShowPassword = (setter) => {
@@ -51,6 +76,7 @@ export default function AuthForm() {
 				{pathname === "/sign-up" && (
 					<div className="flex gap-2">
 						<Input
+							value={formData.firstName}
 							type="text"
 							startContent={<Icon icon="solar:user-bold" />}
 							name="firstName"
@@ -61,6 +87,7 @@ export default function AuthForm() {
 							errorMessage={inputError.firstName}
 						/>
 						<Input
+							value={formData.lastName}
 							type="text"
 							startContent={<Icon icon="solar:user-bold" />}
 							name="lastName"
@@ -74,6 +101,7 @@ export default function AuthForm() {
 				)}
 
 				<Input
+					value={formData.emailAddress}
 					type="email"
 					startContent={<Icon icon="solar:inbox-bold" />}
 					name="emailAddress"
@@ -84,6 +112,7 @@ export default function AuthForm() {
 					errorMessage={inputError.emailAddress}
 				/>
 				<Input
+					value={formData.password}
 					type={showPassword ? "text" : "password"}
 					startContent={<Icon icon="solar:lock-bold" />}
 					name="password"
@@ -112,6 +141,7 @@ export default function AuthForm() {
 					errorMessage={inputError.password}
 				/>
 				<Input
+					value={formData.confirmPassword}
 					type={showConfirmPassword ? "text" : "password"}
 					startContent={<Icon icon="solar:lock-bold" />}
 					name="confirmPassword"
@@ -152,6 +182,7 @@ export default function AuthForm() {
 						color="primary"
 						size="lg"
 						onClick={handleSubmitForm}
+						isLoading={loading}
 					>
 						{pathname === "/sign-up" ? "Register" : "Login"}
 					</Button>
@@ -160,7 +191,6 @@ export default function AuthForm() {
 							Already have an account?{" "}
 							<Link href="/sign-in">Sign In</Link>
 						</p>
-						
 					) : (
 						<p>
 							Don&apos;t have an account?{" "}

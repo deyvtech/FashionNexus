@@ -33,7 +33,9 @@ export default function useValidateError() {
     };
 
     const setError = (data) => {
-        setInputError(validator(data))
+		setInputError(validator(data))
+		
+		return validator(data)
     }
 
 	return [inputError, setError];

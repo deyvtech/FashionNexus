@@ -1,5 +1,4 @@
 import User from "../models/user.model.js"
-import { errorHandler } from "../utils/error.js";
 
 export const createUser = async (request, response, next) => {
 	const { name, email, password } = request.body;
@@ -11,8 +10,8 @@ export const createUser = async (request, response, next) => {
 		response.status(201).send({ msg: "Create user successfully" });
         
 	} catch (error) {
-		// next(error)
+		next(error)
 		// Custom Error
-		next(errorHandler(500, 'Custom error'))
+		// next(errorHandler(500, 'Custom error'))
 	}
 };
