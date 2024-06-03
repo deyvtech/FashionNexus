@@ -10,7 +10,7 @@
         "src": "/api/(.*)",
         "methods": ["GET", "POST", "PUT", "DELETE"],
         "headers": {
-          "Access-Control-Allow-Origin": "https://fashion-nexus-client.vercel.app",
+          "Access-Control-Allow-Origin": "https://fashion-nexus-server.vercel.app",
           "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
           "Access-Control-Allow-Headers": "Content-Type, Authorization"
         }
