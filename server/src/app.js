@@ -12,11 +12,11 @@ dotenv.config()
 
 app.use(cors());
 
-// app.use(cors({
-//     origin: 'https://fashion-nexus-client.vercel.app', // Replace with your frontend domain
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization']
-//   }));
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your frontend domain
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: false}));
