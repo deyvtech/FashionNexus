@@ -6,7 +6,6 @@ import useValidateError from "@/hooks/useValidateError";
 
 export default function AuthForm() {
 	const { pathname } = useLocation();
-
 	const initialState =
 		pathname === "/sign-up"
 			? {

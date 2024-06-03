@@ -13,6 +13,6 @@ export default defineConfig({
 	},
 	define: {
 		// eslint-disable-next-line no-undef
-		VITE_PUBLIC_API_DOMAIN_PROD: process.env.VITE_PUBLIC_API_DOMAIN_PROD,
+		VITE_PUBLIC_API_DOMAIN_PROD: JSON.stringify(process.env.VITE_PUBLIC_API_DOMAIN_PROD),
 	}
 });
