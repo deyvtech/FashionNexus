@@ -42,6 +42,8 @@ export default function AuthForm() {
 	const handleSubmitForm = async () => {
 		const errors = setError(formData)
 		const apiUrl = import.meta.env.VITE_API_DOMAIN_PROD;
+		console.log(apiUrl)
+
 		if (Object.keys(errors).length === 0) {
 
 			try {
@@ -58,7 +60,6 @@ export default function AuthForm() {
 					}
 				);
 
-				console.log(`${apiUrl}/api/auth/${pathname === "/sign-up" ? "signup" : "signin"}`)
 				setFormData(initialState);
 				const data = await response.json();
 				setLoading(prev => !prev)
