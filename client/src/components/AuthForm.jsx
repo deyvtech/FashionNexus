@@ -45,7 +45,7 @@ export default function AuthForm() {
 			try {
 				setLoading(prev => !prev)
 				const response = await fetch(
-					`${import.meta.env.VITE_PUBLIC_API_DOMAIN}/api/auth/${pathname === "/sign-up" ? "signup" : "signin"
+					`${import.meta.env.VITE_PUBLIC_API_DOMAIN_PROD}/api/auth/${pathname === "/sign-up" ? "signup" : "signin"
 					}`,
 					{
 						method: "POST",
