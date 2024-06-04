@@ -41,7 +41,7 @@ export default function AuthForm() {
 
 	const handleSubmitForm = async () => {
 		const errors = setError(formData)
-		const apiUrl = import.meta.env.VITE_API_DOMAIN_PROD;
+		const apiUrl = import.meta.env.VITE_API_DOMAIN;
 		console.log(apiUrl)
 
 		if (Object.keys(errors).length === 0) {
@@ -49,7 +49,7 @@ export default function AuthForm() {
 			try {
 				setLoading(prev => !prev)
 				const response = await fetch(
-					`${apiUrl}/api/auth/${pathname === "/sign-up" ? "signup" : "signin"
+					`${apiUrl}/auth/${pathname === "/sign-up" ? "signup" : "signin"
 					}`,
 					{
 						method: "POST",
