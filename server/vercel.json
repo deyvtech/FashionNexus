@@ -8,7 +8,7 @@
       "src": "/(.*)",
       "dest": "src/index.js",
       "headers": {
-        "Access-Control-Allow-Origin": "https://fashion-nexus-client.vercel.app"
+        "Access-Control-Allow-Origin": "https://fashionnexus-1.onrender.com"
       }
     }
   ]
