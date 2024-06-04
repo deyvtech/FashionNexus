@@ -49,7 +49,7 @@ export default function AuthForm() {
 			try {
 				setLoading(prev => !prev)
 				const response = await fetch(
-					`https://fashion-nexus-server.vercel.app/api/auth/${pathname === "/sign-up" ? "signup" : "signin"
+					`${apiUrl}/${pathname === "/sign-up" ? "signup" : "signin"
 					}`,
 					{
 						method: "POST",
