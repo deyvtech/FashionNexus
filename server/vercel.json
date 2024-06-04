@@ -13,7 +13,7 @@
     }
   ],
   "functions": {
-    "src/controllers/**/*.js": {
+    "src/**/*.js": {
       "maxDuration": 30
     }
   }
