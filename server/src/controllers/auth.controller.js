@@ -53,7 +53,9 @@ export const signin = async (request, response, next) => {
 };
 
 export const testing = async (request, response) => {
-	// const existingUser = await User.findOne({ email: emailAddress });
+	const existingUser = await User.findOne({ email: 'kingnorway17@gmail.com' });
+
+	if (!existingUser) return console.log('No user');
 
 	response.status(200).json({msg: existingUser})
 
