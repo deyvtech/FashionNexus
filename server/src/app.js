@@ -10,6 +10,9 @@ import connectDB from './database/config.js'
 
 dotenv.config()
 
+connectDB()
+
+
 app.use(cors());
 
 // app.use(cors({
@@ -43,6 +46,5 @@ app.use((error, request, response, next) => {
     })
 })
 
-connectDB()
 
 export default app;
