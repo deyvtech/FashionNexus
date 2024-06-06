@@ -1,25 +1,28 @@
 import User from "../models/user.model.js";
-import bcrypt from "bcryptjs";
-import jwt from 'jsonwebtoken'
-
+import generateToken from "../utils/generateToken.js";
 export const signup = async (request, response, next) => {
 	const { firstName, lastName, emailAddress, password } = request.body;
-
-	console.log(request.body);
 	try {
 		const existingUser = await User.findOne({ email: emailAddress });
 		if (existingUser)
-			return response.status(403).send({ msg: "User already exist" });
+			return response.status(403).send({ msg: "User already exists" });
 
-		const hashedPassword = bcrypt.hashSync(password, 10);
-		const newUser = new User({
+		// const hashedPassword = bcrypt.hashSync(password, 10);
+		const newUser = await User.create({
 			name: firstName + " " + lastName,
 			email: emailAddress,
-			password: hashedPassword,
+			password: password,
 		});
 
-		await newUser.save();
-		return response.status(201).send({ msg: "Create user successfully" });
+		if (newUser) {
+			generateToken(response, newUser._id)
+			return response.status(201).json({
+				msg: "Create user successfully",
+				_id: newUser._id,
+				name: newUser.name,
+				email: newUser.email,
+			});
+		}
 	} catch (error) {
 		next(error);
 		// Custom Error
@@ -29,34 +32,19 @@ export const signup = async (request, response, next) => {
 
 export const signin = async (request, response, next) => {
 	const { emailAddress, password } = request.body;
-
 	try {
 		const validUser = await User.findOne({ email: emailAddress });
-		const comparePassword = bcrypt.compareSync(password, validUser.password);
-		if (!comparePassword)
-            return response.status(401).send({ msg: "Invalid credentials" });
-    
-        // Create token
-        const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-        const { password: hashedPassword, ...user } = validUser._doc;
-        response.cookie("access_token", "Bearer " + token, { 
-            expires:  new Date(Date.now() + 1 * 3600000), 
-            httpOnly: true, 
-            secure: true, 
-            sameSite: 'Lax',
-            path: '/' // Cookie is accessible on all routes
-        }).status(200).json(user);
 
+		if (!(await validUser.matchPassword(password)))
+			return response.status(401).send({ msg: "Invalid credentials", login: false });
+
+		// Exclude password
+		const { password: userPassword, ...user } = validUser._doc;
+		
+		generateToken(response, validUser._id)
+		return response.status(200).json({msg: "Login successfully", login: true,  ...user});
+		
 	} catch (error) {
 		next(error);
 	}
 };
-
-export const testing = async (request, response) => {
-	const existingUser = await User.findOne({ email: 'kingnorway17@gmail.com' });
-
-	if (!existingUser) return console.log('No user');
-
-	response.status(200).json({msg: existingUser})
-
-}

@@ -3,17 +3,16 @@ import {useState } from "react";
 export default function useValidateError() {
 	const [inputError, setInputError] = useState({});
 
-	const validator = (data) => {
+	const validator = (data, pathname) => {
 		const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i;
 		const errors = {};
 
-		console.log(data);
-		if (!data.firstName) errors.firstName = "First name is required";
-		else if (data.firstName.length < 6)
+		if (!data.firstName && pathname === '/sign-up') errors.firstName = "First name is required";
+		else if (data.firstName?.length < 6 && pathname === '/sign-up')
 			errors.firstName = "First Name must be 6 characters long";
 
-		if (!data.lastName) errors.lastName = "Last name is required";
-		else if (data.lastName.length < 6)
+		if (!data.lastName && pathname === '/sign-up') errors.lastName = "Last name is required";
+		else if (data.lastName?.length < 6 && pathname === '/sign-up')
 			errors.lastName = "Last Name must be 6 characters long";
 
 		if (!data.emailAddress) errors.emailAddress = "Email is required";
@@ -32,8 +31,8 @@ export default function useValidateError() {
 		return errors;
     };
 
-    const setError = (data) => {
-		setInputError(validator(data))
+    const setError = (data, pathname) => {
+		setInputError(validator(data, pathname))
 		
 		return validator(data)
     }

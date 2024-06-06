@@ -1,13 +1,30 @@
 import { Button, Input, Checkbox, Link } from "@nextui-org/react";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useReducer } from "react";
 import { Icon } from "@iconify/react";
-import { useLocation } from "react-router-dom";
+import { useNavigate , useLocation  } from "react-router-dom";
 import useValidateError from "@/hooks/useValidateError";
+import {toastError, toastSuccess} from "@/utils/toast";
 
-
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "USER_FORM":
+			return {...state, }
+		case "LOADING":
+			return { ...state, isLoading: !state.isLoading };
+		case "PASSWORD":
+			return { ...state, showPassword: !state.showPassword };
+		case "CONFIRM_PASSWORD":
+			return { ...state, showConfirmPassword: !state.showConfirmPassword };
+		case "AGREE_TERMS":
+			return {...state, isAgreeTheTerms: !state.isAgreeTheTerms}
+		default:
+			return state;
+	}
+};
 
 export default function AuthForm() {
 	const { pathname } = useLocation();
+	const navigate = useNavigate()
 	const initialState =
 		pathname === "/sign-up"
 			? {
@@ -23,14 +40,18 @@ export default function AuthForm() {
 					confirmPassword: "123123123",
 			};
 
+	const [state, dispatch] = useReducer(reducer, {
+		isLoading: false,
+		showPassword: false,
+		showConfirmPassword: false,
+		isAgreeTheTerms: false,
+	});
+
+
 	const [formData, setFormData] = useState(initialState);
 
 	// Use CustomHooks
 	const [inputError, setError] = useValidateError();
-
-	const [showPassword, setShowPassword] = useState(false);
-	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-	const [loading, setLoading] = useState(false);
 
 	const handleChangeInput = useCallback((e) => {
 		const { name, value } = e.target;
@@ -40,39 +61,36 @@ export default function AuthForm() {
 	}, []);
 
 	const handleSubmitForm = async () => {
-		const errors = setError(formData)
+		const errors = setError(formData, pathname);
 		const apiUrl = import.meta.env.VITE_API_DOMAIN;
-		console.log(apiUrl)
-
-		if (Object.keys(errors).length === 0) {
-
+		if(!state.isAgreeTheTerms) return toastError('Please accept Terms and Conditions to continue')
+		if (Object.keys(errors).length === 0 && state.isAgreeTheTerms) {
 			try {
-				setLoading(prev => !prev)
+				dispatch({ type: "LOADING" });
 				const response = await fetch(
-					`${apiUrl}/auth/${pathname === "/sign-up" ? "signup" : "signin"
+					`${apiUrl}/auth/${
+						pathname === "/sign-up" ? "signup" : "signin"
 					}`,
 					{
 						method: "POST",
 						headers: {
 							"Content-type": "application/json",
 						},
+						credentials: 'include',
 						body: JSON.stringify(formData),
 					}
 				);
-
 				setFormData(initialState);
-				const data = await response.json();
-				setLoading(prev => !prev)
-
-				console.log(data)
+				dispatch({ type: "LOADING" });
+				if (response.status === 403) return toastError('User already exist!');
+				if (response.status === 201) {
+					toastSuccess("Registered successfully!");
+					return navigate("/sign-in", {replace: true});
+				}
 			} catch (error) {
 				console.log(error);
-			} 
+			}
 		}
-	};
-
-	const handleToggleShowPassword = (setter) => {
-		setter((prev) => !prev);
 	};
 
 	return (
@@ -118,7 +136,7 @@ export default function AuthForm() {
 				/>
 				<Input
 					value={formData.password}
-					type={showPassword ? "text" : "password"}
+					type={state.showPassword ? "text" : "password"}
 					startContent={<Icon icon="solar:lock-bold" />}
 					name="password"
 					label="Password"
@@ -127,13 +145,10 @@ export default function AuthForm() {
 						<Button
 							isIconOnly
 							variant="light"
-							onClick={() =>
-								handleToggleShowPassword(setShowPassword)
-							}
-						>
+							onClick={() => dispatch({type: 'PASSWORD'})} >
 							<Icon
 								icon={`solar:${
-									showPassword
+									state.showPassword
 										? "eye-closed-bold"
 										: "eye-bold"
 								}`}
@@ -147,7 +162,7 @@ export default function AuthForm() {
 				/>
 				<Input
 					value={formData.confirmPassword}
-					type={showConfirmPassword ? "text" : "password"}
+					type={state.showConfirmPassword ? "text" : "password"}
 					startContent={<Icon icon="solar:lock-bold" />}
 					name="confirmPassword"
 					label="Confirm Password"
@@ -156,13 +171,11 @@ export default function AuthForm() {
 						<Button
 							isIconOnly
 							variant="light"
-							onClick={() =>
-								handleToggleShowPassword(setShowConfirmPassword)
-							}
+							onClick={() => dispatch({type: 'CONFIRM_PASSWORD'})}
 						>
 							<Icon
 								icon={`solar:${
-									showConfirmPassword
+									state.showConfirmPassword
 										? "eye-closed-bold"
 										: "eye-bold"
 								}`}
@@ -175,22 +188,14 @@ export default function AuthForm() {
 					errorMessage={inputError.confirmPassword}
 				/>
 
-				<div>
-					<Checkbox>I agree to the</Checkbox>{" "}
-					<Link href="/" className="underline">
-						Terms & Privacy
-					</Link>
-				</div>
+					<div>
+						<Checkbox onChange={() => dispatch({type: 'AGREE_TERMS'})}>I agree to the</Checkbox>{" "}
+						<Link href="/" className="underline">
+							Terms & Conditions
+						</Link>
+					</div>
 				<div className="flex items-center justify-between">
-					<Button
-						className="px-10"
-						color="primary"
-						size="lg"
-						onClick={handleSubmitForm}
-						isLoading={loading}
-					>
-						{pathname === "/sign-up" ? "Register" : "Login"}
-					</Button>
+
 					{pathname === "/sign-up" ? (
 						<p>
 							Already have an account?{" "}
@@ -202,6 +207,27 @@ export default function AuthForm() {
 							<Link href="/sign-up">Sign Up</Link>
 						</p>
 					)}
+					<Button
+						className="px-10"
+						color="primary"
+						size="lg"
+						onClick={handleSubmitForm}
+						isLoading={state.isLoading}
+						spinner={
+							<Icon
+								icon="ph:spinner-light"
+								className="text-2xl animate-spin "
+							/>
+						}
+					>
+						{state.isLoading
+							? "Loading"
+							: `${
+									pathname === "/sign-up"
+										? "Register"
+										: "Login"
+							}`}
+					</Button>
 				</div>
 			</form>
 		</>

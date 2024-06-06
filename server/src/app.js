@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser';
 
-import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
 
 const app = express();
@@ -13,7 +13,10 @@ dotenv.config()
 connectDB()
 
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+	credentials: true
+}));
 
 // app.use(cors({
 //     origin: 'https://fashion-nexus-client.vercel.app', // Replace with your frontend domain
@@ -22,12 +25,13 @@ app.use(cors());
 //   }));
 
 // parse application/x-www-form-urlencoded
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 // parse application/json
 app.use(express.json());
 
+app.use(cookieParser());
+
 // Main Routes
-app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute)
 
 // Root Routes
