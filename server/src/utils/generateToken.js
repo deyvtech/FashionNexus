@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 const generateToken = (response, userId) => {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-    response.cookie('jwt', "Bearer " +  token, {
+    response.cookie('jwt', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV !== 'development',
         sameSite: 'strict',

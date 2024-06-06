@@ -15,9 +15,13 @@ const userSchema = new Schema(
 
 // Hashing the password
 userSchema.pre('save', async function (next) {
-	if (!this.isModified('password')) next();
-
-	this.password = bcrypt.hashSync(this.password, 10);
+	if (!this.isModified("password")) return next();
+	try {
+		this.password = bcrypt.hashSync(this.password, 10);
+		next();
+	} catch (error) {
+		next(error);
+	}
 })
 
 // Comparing the passwords for login credentials

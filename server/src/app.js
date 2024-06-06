@@ -2,11 +2,11 @@ import express from "express";
 import cors from "cors";
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser';
+import connectDB from './database/config.js'
 
 import authRoute from "./routes/auth.route.js";
 
 const app = express();
-import connectDB from './database/config.js'
 
 dotenv.config()
 
@@ -24,9 +24,8 @@ app.use(cors({
 //     allowedHeaders: ['Content-Type', 'Authorization']
 //   }));
 
-// parse application/x-www-form-urlencoded
+// parse application/x-www-form-urlencoded & application/json
 app.use(express.urlencoded({extended: true}));
-// parse application/json
 app.use(express.json());
 
 app.use(cookieParser());
@@ -36,10 +35,10 @@ app.use('/api/auth', authRoute)
 
 // Root Routes
 app.get('/', (request, response) => {
-    response.json({msg: 'Welcome to FashionNexus server'})
+    response.json({msg: 'Welcome to FashionNexus api'})
 })
 
-// Main middleware 
+// Main middleware Error Handling
 app.use((error, request, response, next) => {
     const statusCode = error.statusCode || 500
     const message = error.message || 'Internal Server Error'
@@ -47,7 +46,7 @@ app.use((error, request, response, next) => {
         success: false,
         message,
         statusCode,
-    })
+    });
 })
 
 
