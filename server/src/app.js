@@ -38,7 +38,8 @@ app.get('/', (request, response) => {
     response.json({msg: 'Welcome to FashionNexus api'})
 })
 
-// Main middleware Error Handling
+ /* Main middleware Error Handling
+ This code snippet is defining a custom error-handling middleware function  */
 app.use((error, request, response, next) => {
     const statusCode = error.statusCode || 500
     const message = error.message || 'Internal Server Error'
