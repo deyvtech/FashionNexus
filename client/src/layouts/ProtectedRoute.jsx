@@ -5,7 +5,7 @@ import AuthLayout from './AuthLayout';
 
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({ isUserAuthenticated }) => {
-    if (!isUserAuthenticated) {
+    if (isUserAuthenticated) {
       return <Navigate to="/" replace />;
     }
   

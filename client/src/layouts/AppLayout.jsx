@@ -9,15 +9,15 @@ import { useInView } from "react-intersection-observer";
 export default function AppLayout() {
 
 	const [ref, inView] = useInView({
-		threshold: 0.2,
+		threshold: 0,
 	});
 
 	return (
 		<Provider>
 			<div id="site-wrapper">
-				<Header inView={inView} />
+				<Header />
 				<div id="content-wrapper">
-					<Outlet context={{ ref }} />
+					<Outlet />
 				</div>
 				<Footer />
 			</div>

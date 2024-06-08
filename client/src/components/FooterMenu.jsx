@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "@nextui-org/link";
 
 export default function FooterMenu({ menus, title }) {

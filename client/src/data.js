@@ -37,3 +37,27 @@ export const social = [
     { name: 'youtube', ariaName: 'YouTube', icon: 'bxl:youtube' },
     { name: 'pinterest', ariaName: 'Pinterest', icon: 'bxl:pinterest-alt' }
 ];
+
+export const newFashionImage = {
+    men: [
+        'new-men1.jpg',
+        'new-men2.jpg',
+        'new-men4.jpg',
+        'new-men5.jpg',
+        'new-men6.jpg',
+    ],
+    women: [
+        'new-women1.jpg',
+        'new-women2.jpg',
+        'new-women3.jpg',
+        'new-women4.jpg',
+        'new-women5.jpg',
+    ],
+    kids: [
+        'new-kid1.jpg',
+        'new-kid2.jpg',
+        'new-kid3.jpg',
+        'new-kid4.jpg',
+        'new-kid5.jpg',
+    ]
+}

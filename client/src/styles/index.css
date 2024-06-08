@@ -13,3 +13,13 @@
     body {
       font-family: 'Inter', sans-serif;
 }
+
+.slick-slide {
+  transition: all .3s ease-in-out;
+  transform: scale(.8);
+}
+
+.slick-slide.slick-center {
+  transform: scale(1);
+  transition: all .3s ease-in-out;
+}

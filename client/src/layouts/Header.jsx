@@ -1,18 +1,17 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "@nextui-org/react";
-
 
 import IconButton from "@/components/IconButton";
 import { menus } from "@/data";
 
-const Header = ({inView}) => {
+const Header = () => {
 	const location = useLocation();
+
+	const isUserAuthenticated = false;
 	return (
 		<header
 			className={` custom-transition  shadow-md ${
-				location.pathname === "/" && "fixed"
-			} top-0 w-full z-50 ${inView ? 'bg-[#2015124d] backdrop-blur-md border-b-0 p-2 custom-transition' : 'p-4'}`}
+				location.pathname === "/" && "fixed" } top-0 w-full z-50 bg-[#2015124d] backdrop-blur-md border-b-0 custom-transition p-4`}
 		>
 			<div className="max-w-[1280px] mx-auto flex justify-between items-center">
 				<Link href={"/"} className="font-exo-2">
@@ -28,51 +27,78 @@ const Header = ({inView}) => {
 					<ul className="flex">
 						{menus.headerMenu.map((menu) => (
 							<li className="px-4" key={menu.key}>
-							<Link
-								href={menu.href}
-								className={`hover:text-fnAccent-900 text-${
-									location.pathname === "/"
-										? "white"
-										: "black"
-								}`}
-							>
-								{menu.name}
-							</Link>
-						</li>
+								<Link
+									href={menu.href}
+									className={`hover:text-fnAccent-900 text-${
+										location.pathname === "/"
+											? "white"
+											: "black"
+									}`}
+								>
+									{menu.name}
+								</Link>
+							</li>
 						))}
 					</ul>
 				</nav>
-				<div>
-					<IconButton
-						href={""}
-						icon={"solar:magnifer-linear"}
-						color="primary"
-						variant="light"
-						aria-label="Search"
-						iconStyles={`text-2xl text-${
-							location.pathname === "/" ? "white" : "black"
-						}`}
-					/>
-					<IconButton
-						href={"/cart"}
-						icon={"solar:cart-outline"}
-						color="primary"
-						variant="light"
-						aria-label="Cart"
-						iconStyles={`text-2xl text-${
-							location.pathname === "/" ? "white" : "black"
-						}`}
-					/>
-					<IconButton
-						href={"/profile/id"}
-						icon={"solar:user-circle-outline"}
-						color="primary"
-						variant="light"
-						aria-label="Cart"
-						iconStyles={`text-2xl text-${
-							location.pathname === "/" ? "white" : "black"
-						}`}
-					/>
+				<div className="flex items-center space-x-2">
+					<div>
+						<IconButton
+							href={""}
+							icon={"solar:magnifer-linear"}
+							color="primary"
+							variant="light"
+							aria-label="Search"
+							iconStyles={`text-2xl text-${
+								location.pathname === "/" ? "white" : "black"
+							}`}
+						/>
+						{isUserAuthenticated && (
+							<>
+								<IconButton
+									href={"/cart"}
+									icon={"solar:cart-outline"}
+									color="primary"
+									variant="light"
+									aria-label="Cart"
+									iconStyles={`text-2xl text-${
+										location.pathname === "/"
+											? "white"
+											: "black"
+									}`}
+								/>
+								<IconButton
+									href={"/profile/id"}
+									icon={"solar:user-circle-outline"}
+									color="primary"
+									variant="light"
+									aria-label="Cart"
+									iconStyles={`text-2xl text-${
+										location.pathname === "/"
+											? "white"
+											: "black"
+									}`}
+								/>
+							</>
+						)}
+					</div>
+					{!isUserAuthenticated && (
+						<div className="text-white">
+						<Link
+							href="/sign-in"
+							className="text-[14px] text-fnAccent-960"
+						>
+							Sign In
+						</Link>{" "}
+						/{" "}
+						<Link
+							href="/sign-up"
+							className="text-[14px] text-fnAccent-960"
+						>
+							Sign Up
+						</Link>
+					</div>
+					)}
 				</div>
 			</div>
 		</header>

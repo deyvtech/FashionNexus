@@ -1,17 +1,17 @@
-import React from 'react'
-import HomeSlider from '@/components/Home/HomeSlider';
+import HomeSlider from "@/components/Home/HomeSlider";
 import { Link } from "@nextui-org/link";
-import { useOutletContext } from "react-router-dom";
-import HomeTitle from '@/components/Home/HomeTitle';
-
+// import { useOutletContext } from "react-router-dom";
+import HomeTitle from "@/components/Home/HomeTitle";
+import NewFashionSlider from "@/components/NewFashionSlider";
+import NewFashionSliderItem from "@/components/NewFashionSliderItem";
+import { newFashionImage } from "@/data";
 
 export default function Home() {
-	const {ref}  = useOutletContext()
+	// const { ref } = useOutletContext();
 	return (
 		<div>
-			<HomeSlider >
-				<HomeTitle text={"Unleash Your Style: "}/>
-				<HomeTitle text={"Exclusive Clothing Collection"}/>
+			<HomeSlider>
+				<HomeTitle />
 				<div className="mt-24 mx-auto">
 					<Link
 						href="/shop"
@@ -22,10 +22,44 @@ export default function Home() {
 				</div>
 			</HomeSlider>
 
-			{/* Featured */}
-			<section className='max-w-[1280px] py-10 mx-auto' ref={ref}>
-				<h2 className='text-[60px] font-exo-2 font-bold text-center'>New Collection</h2>
+			{/* Collections */}
+			<section className="max-w-[1280px] py-10 mx-auto">
+				<h2 className="text-[60px] font-exo-2 font-bold text-center">
+					New Collection
+				</h2>
+
+				{/*  SLIDERS */}
+				<h3 className="text-[32px] font-inter font-bold mt-40">
+					Men's New
+				</h3>
+				<NewFashionSlider>
+					{newFashionImage.men.map((image, key) => (
+						<NewFashionSliderItem  image={image} key={key}/> 
+					))}
+				</NewFashionSlider>
+{/* 
+				<h3 className="text-[32px] font-inter font-bold mt-40">
+					Women's New
+				</h3>
+				<NewFashionSlider>
+					{newFashionImage.women.map((image, key) => (
+						<NewFashionSliderItem  image={image} key={key}/> 
+					))}
+				</NewFashionSlider>
+
+				<h3 className="text-[32px] font-inter font-bold mt-40">
+					Kids New
+				</h3>
+				<NewFashionSlider>
+					{newFashionImage.kids.map((image, key) => (
+						<NewFashionSliderItem  image={image} key={key}/> 
+					))}
+				</NewFashionSlider> */}
 			</section>
 		</div>
 	);
+}
+
+function Loading() {
+	return <h2>🌀 Loading...</h2>;
 }
