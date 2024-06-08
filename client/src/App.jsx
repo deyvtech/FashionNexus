@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Home, About, Contact, Shop, Profile, Cart, Checkout, SignIn, SignUp } from "@/pages";
 import AppLayout from "@/layouts/AppLayout";
-import AuthLayout from "@/layouts/AuthLayout";
+import ProtectedRoute from "@/layouts/ProtectedRoute";
 
 const router = createBrowserRouter([
 	{
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
 		],
 	},
 	{
-		element: <AuthLayout />,
+		element: <ProtectedRoute isAuthenticated={true}/>,
 		children: [
 			{ path: "/sign-in", element: <SignIn /> },
 			{ path: "/sign-up", element: <SignUp /> },

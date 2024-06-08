@@ -80,13 +80,19 @@ export default function AuthForm() {
 						body: JSON.stringify(formData),
 					}
 				);
+				const data = await response.json()
 				setFormData(initialState);
 				dispatch({ type: "LOADING" });
 				if (response.status === 403) return toastError('User already exist!');
+				if (response.status === 401 && data.login === false) return toastError('Invalid Credentials!');
 				if (response.status === 201) {
 					toastSuccess("Registered successfully!");
 					return navigate("/sign-in", {replace: true});
 				}
+				if (response.status === 200 && data.login === true) { 
+					toastSuccess('Login successfully!');
+					return navigate("/", {replace: true});
+				} 
 			} catch (error) {
 				console.log(error);
 			}

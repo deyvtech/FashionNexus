@@ -40,15 +40,15 @@ export const signin = async (request, response, next) => {
 		if (!(await validUser.matchPassword(password)))
 			return response
 				.status(401)
-				.json({ msg: "Invalid credentials", login: false });
+				.json({ msg: "Invalid credentials", login: false});
 
 		// Exclude password
-		const { password: userPassword, ...user } = validUser._doc;
+		// const { password: userPassword, ...user } = validUser._doc;
 
 		generateToken(response, validUser._id);
 		return response
 			.status(200)
-			.json({ msg: "Login successfully", login: true, ...user });
+			.json({ msg: "Login successfully", login: true });
 	} catch (error) {
 		next(error);
 	}
@@ -59,7 +59,7 @@ export const logout = (request, response) => {
 		httpOnly: true,
 		expires: new Date(0),
 	});
-	return response.status(200).json({ msg: "Logged out successfully" });
+	return response.status(200).json({ msg: "Logged out successfully", login: false });
 };
 
 export const getUser = async (request, response) => {
