@@ -37,7 +37,7 @@ export default function Home() {
 						<NewFashionSliderItem  image={image} key={key}/> 
 					))}
 				</NewFashionSlider>
-{/* 
+
 				<h3 className="text-[32px] font-inter font-bold mt-40">
 					Women's New
 				</h3>
@@ -54,12 +54,9 @@ export default function Home() {
 					{newFashionImage.kids.map((image, key) => (
 						<NewFashionSliderItem  image={image} key={key}/> 
 					))}
-				</NewFashionSlider> */}
+				</NewFashionSlider>
 			</section>
 		</div>
 	);
 }
 
-function Loading() {
-	return <h2>🌀 Loading...</h2>;
-}

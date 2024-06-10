@@ -13,7 +13,7 @@ function NewFashionSlider({ children }) {
 		arrows: true,
 	};
 	return (
-		<div className="slider-container mt-10 flex">
+		<div className="slider-container mt-10">
       <Slider {...settings}>
         {children}
       </Slider>
