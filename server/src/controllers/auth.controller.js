@@ -37,10 +37,16 @@ export const signin = async (request, response, next) => {
 	try {
 		const validUser = await User.findOne({ email: emailAddress });
 
+		if (!validUser)
+			response
+				.status(404)
+				.json({ msg: "User not found on the database" });
+
 		if (!(await validUser.matchPassword(password)))
 			return response
 				.status(401)
-				.json({ msg: "Invalid credentials", login: false});
+				.json({ msg: "Invalid credentials", login: false });
+		
 
 		// Exclude password
 		// const { password: userPassword, ...user } = validUser._doc;

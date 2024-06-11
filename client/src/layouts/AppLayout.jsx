@@ -1,7 +1,7 @@
 import Header from "@/layouts/Header";
 import Footer from "@/layouts/Footer";
 import { Outlet } from "react-router-dom";
-import { Provider } from "@/provider";
+import { NextProvider } from "@/provider";
 
 // intersection
 import { useInView } from "react-intersection-observer";
@@ -13,7 +13,7 @@ export default function AppLayout() {
 	});
 
 	return (
-		<Provider>
+		<NextProvider>
 			<div id="site-wrapper">
 				<Header />
 				<div id="content-wrapper">
@@ -21,6 +21,6 @@ export default function AppLayout() {
 				</div>
 				<Footer />
 			</div>
-		</Provider>
+		</NextProvider>
 	);
 }
