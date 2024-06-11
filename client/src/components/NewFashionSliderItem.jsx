@@ -1,4 +1,3 @@
-import { getImageUrl } from "@/utils/getImgUrl";
 import { Image } from "@nextui-org/image";
 import Star from "./Star";
 import { Button} from "@nextui-org/react";
@@ -8,7 +7,7 @@ export default function NewFashionSliderItem({ image }) {
 	return (
 		<div className=" group max-h-[300px !impotant] relative cursor-pointer overflow-hidden rounded-lg">
 			<Image
-				src={getImageUrl(image)}
+				src={image}
 				alt=""
 				className="object-cover object-center block w-full"
 				loading="lazy"

@@ -40,24 +40,24 @@ export const social = [
 
 export const newFashionImage = {
     men: [
-        'new-men1.jpg',
-        'new-men2.jpg',
-        'new-men4.jpg',
-        'new-men5.jpg',
-        'new-men6.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104081/ecommerce/new-men1_aauldk.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104077/ecommerce/new-men2_cxgbja.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104080/ecommerce/new-men4_hvtl7p.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104079/ecommerce/new-men5_irzjfe.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104065/ecommerce/new-men6_ctkwvp.jpg',
     ],
     women: [
-        'new-women1.jpg',
-        'new-women2.jpg',
-        'new-women3.jpg',
-        'new-women4.jpg',
-        'new-women5.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104065/ecommerce/new-women1_nv5uap.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104064/ecommerce/new-women2_tjoufm.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104064/ecommerce/new-women3_lou3no.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104065/ecommerce/new-women4_k8suna.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104065/ecommerce/new-women5_ewg5hv.jpg',
     ],
     kids: [
-        'new-kid1.jpg',
-        'new-kid2.jpg',
-        'new-kid3.jpg',
-        'new-kid4.jpg',
-        'new-kid5.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104070/ecommerce/new-kid1_n0rlgc.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104071/ecommerce/new-kid2_kobjeb.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104072/ecommerce/new-kid3_hfg8qn.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104073/ecommerce/new-kid4_ibl4c8.jpg',
+        'https://res.cloudinary.com/doilhupqa/image/upload/v1718104075/ecommerce/new-kid5_eeeal1.jpg',
     ]
 }
