@@ -8,12 +8,13 @@ export const protect = async (request, response, next) => {
     if (token) {
 		try {
 			const decoded = jwt.verify(token, process.env.JWT_SECRET);
+			console.log(decoded)
 
 			/* This line of code is fetching the user data from the database based on the `userId` extracted from
             the decoded JWT token. It is using the `User` model to find the user by their `userId` and excluding
             the `password` field from the retrieved user data. The retrieved user data is then assigned to
             `request.user`, making it available for further processing in the application. */
-			request.user = await User.findById(decoded.userId).select(
+			request.userData = await User.findById(decoded.userId).select(
 				"-password"
 			);
 

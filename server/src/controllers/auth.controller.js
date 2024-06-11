@@ -64,9 +64,9 @@ export const logout = (request, response) => {
 
 export const getUser = async (request, response) => {
 	const user = {
-		_id: request.user._id,
-		name: request.user.name,
-		email: request.user.email,
+		_id: request.userData._id,
+		name: request.userData.name,
+		email: request.userData.email,
 	};
 
 	response.status(200).json(user);
