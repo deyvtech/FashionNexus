@@ -14,7 +14,7 @@ connectDB()
 
 
 app.use(cors({
-    origin: process.env.NODE_ENV ? 'http://localhost:5173' : process.env.CLIENT_DOMAIN,
+    origin: process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : process.env.CLIENT_DOMAIN,
 	credentials: true
 }));
 
