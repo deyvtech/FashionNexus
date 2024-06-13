@@ -85,6 +85,8 @@ export default function AuthForm() {
 				dispatch({ type: "LOADING" });
 				if (response.status === 403) return toastError('User already exist!');
 				if (response.status === 401 && data.login === false) return toastError('Invalid Credentials!');
+
+				
 				if (response.status === 201) {
 					toastSuccess("Registered successfully!");
 					return navigate("/sign-in", {replace: true});

@@ -1,6 +1,6 @@
 import { Button, Link } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
-import AuthForm from "@/components/AuthForm";
+import AuthFormSignIn from "@/components/AuthFormSignIn";
 export default function SignIn() {
 	return (
 		<div className=" py-24 pl-24 pr-12 text-white w-[40%]">
@@ -37,7 +37,7 @@ export default function SignIn() {
 				<p className="text-gray-500">or</p>
 				<span className="w-[50%] h-[1px] bg-fnAccent-900"></span>
 			</div>
-			<AuthForm/>
+			<AuthFormSignIn />
 		</div>
 	);
 }
