@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, {useReducer } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Input, Checkbox, Link } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
@@ -8,63 +8,55 @@ import useValidateError from "@/hooks/useValidateError";
 import useFormInput from "@/hooks/useFormInput";
 
 // Utilites
-import { toastError, toastSuccess } from "@/utils/toast";
+import { toastError } from "@/utils/toast";
 import { reducer } from "@/utils/formReducer";
+
+// Redux Toolkit
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "@/app/slices/authSlice";
+
+
+const initialState = {
+	emailAddress: "kingnorway17@gmail.com",
+	password: "123123123",
+	confirmPassword: "123123123",
+};
+
 
 export default function AuthFormSignIn() {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 
-	const initialState = {
-		emailAddress: "kingnorway17@gmail.com",
-		password: "123123123",
-		confirmPassword: "123123123",
-	};
+	// Redux Toolkit
+	const dispatchRedux = useDispatch();
+	const { loading } = useSelector((state) => state.auth);
 
 	// Use CustomHooks
 	const [inputError, setError] = useValidateError();
-	const { handleChangeInput, stateData, setStateData } =
-		useFormInput(initialState);
+	const { handleChangeInput, stateData, setStateData } = useFormInput(initialState);
 
+	// React Reducer
 	const [stateReducer, dispatch] = useReducer(reducer, {
-		isLoading: false,
 		showPassword: false,
 		showConfirmPassword: false,
 		isAgreeTheTerms: false,
 	});
 
 	const handleSubmitForm = async () => {
+
+		// Validate Error
 		const errors = setError(stateData, pathname);
 
-		const apiUrl = import.meta.env.VITE_API_DOMAIN;
-
+		// If checkbox is not checked
 		if (!stateReducer.isAgreeTheTerms && Object.keys(errors).length === 0)
 			return toastError("Please accept Terms and Conditions to continue");
+
 		if (Object.keys(errors).length === 0 && stateReducer.isAgreeTheTerms) {
-			try {
-				dispatch({ type: "LOADING" });
-				const response = await fetch(`${apiUrl}/auth/signin`, {
-					method: "POST",
-					headers: {
-						"Content-type": "application/json",
-					},
-					credentials: "include",
-					body: JSON.stringify(stateData),
-				});
-				const data = await response.json();
-				setStateData(initialState);
-				dispatch({ type: "LOADING" });
-
-				if (response.status === 401 && data.login === false)
-					return toastError("Invalid Credentials!");
-
-				if (response.status === 200 && data.login === true) {
-					toastSuccess("Login successfully!");
-					return navigate("/", { replace: true });
+			dispatchRedux(loginUser(stateData)).then((res) => {
+				if (res.type === "auth/loginUser/fulfilled") {
+					navigate("/", { replace: true });
 				}
-			} catch (error) {
-				console.log(error);
-			}
+			});
 		}
 	};
 
@@ -110,7 +102,7 @@ export default function AuthFormSignIn() {
 					isInvalid={inputError.password}
 					errorMessage={inputError.password}
 				/>
-				
+
 				<Input
 					value={stateData.confirmPassword}
 					type={
@@ -163,7 +155,7 @@ export default function AuthFormSignIn() {
 						color="primary"
 						size="lg"
 						onClick={handleSubmitForm}
-						isLoading={stateReducer.isLoading}
+						isLoading={loading}
 						spinner={
 							<Icon
 								icon="ph:spinner-light"
@@ -171,7 +163,7 @@ export default function AuthFormSignIn() {
 							/>
 						}
 					>
-						{stateReducer.isLoading ? "Loading" : "Login"}
+						{loading ? "Loading" : "Login"}
 					</Button>
 				</div>
 			</form>

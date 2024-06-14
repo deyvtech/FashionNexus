@@ -3,11 +3,12 @@ import { Link } from "@nextui-org/react";
 
 import IconButton from "@/components/IconButton";
 import { menus } from "@/data";
+import { useSelector } from "react-redux";
 
 const Header = () => {
 	const location = useLocation();
+	const {isAuthenticated} = useSelector((state) => state.auth)
 
-	const isUserAuthenticated = false;
 	return (
 		<header
 			className={` custom-transition  shadow-md ${
@@ -53,7 +54,7 @@ const Header = () => {
 								location.pathname === "/" ? "white" : "black"
 							}`}
 						/>
-						{isUserAuthenticated && (
+						{isAuthenticated && (
 							<>
 								<IconButton
 									href={"/cart"}
@@ -82,7 +83,7 @@ const Header = () => {
 							</>
 						)}
 					</div>
-					{!isUserAuthenticated && (
+					{!isAuthenticated && (
 						<div className="text-white">
 						<Link
 							href="/sign-in"
